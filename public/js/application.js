@@ -1,6 +1,6 @@
-const $accountDiv = document.body.querySelector('#divForm');
-const $accountDivForm = document.body.querySelector('#account_id');
-const $accountInput = document.body.querySelector('#account_id_input');
+const $accountDiv = document.body.querySelector('#inputless');
+const $accountDivForm = document.body.querySelector('#inputlessForm');
+const $accountInput = document.body.querySelector('#inputForm');
 
 $accountDivForm.addEventListener('click', async (event) => {
   if (event.target.tagName === 'BUTTON' && event.target.innerText === 'Редактировать') {
@@ -70,40 +70,40 @@ $accountDivForm.addEventListener('click', async (event) => {
     if (response.ok) {
       const newInfo = await response.json();
       $accountInput.remove();
-      $accountDiv.insertAdjacentHTML('afterbegin', createDomElement(newInfo));
-
-      function createDomElement(dataFromBack){
-        return(`<form id="account_id" action="/account" method="POST">
-        <div class="row">
-            <div class="input-field col s4">
-                <p>{{user.firstName}}</p>
-            </div>
-        </div>
-        <p></p>
-        <div class="row">
-            <div class="input-field col s4">
-                <p>{{user.lastName}}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s4">
-                <p>{{user.email}}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s4">
-                <p>{{user.password}}</p>
-            </div>
-        <div class="row">
-            <div class="input-field col s4">
-               <p>{{user.cityName}}</p>
-            </div>
-        </div>
-            <button class="delete" type="submit">Редактировать</button>
-        </div>
-        </form>`)
+      $accountDiv.innerHTML = newInfo;
     }
-  }
+    //   function createDomElement(dataFromBack){
+    //     return(`<form id="account_id" action="/account" method="POST">
+    //     <div class="row">
+    //         <div class="input-field col s4">
+    //             <p>{{user.firstName}}</p>
+    //         </div>
+    //     </div>
+    //     <p></p>
+    //     <div class="row">
+    //         <div class="input-field col s4">
+    //             <p>{{user.lastName}}</p>
+    //         </div>
+    //     </div>
+    //     <div class="row">
+    //         <div class="input-field col s4">
+    //             <p>{{user.email}}</p>
+    //         </div>
+    //     </div>
+    //     <div class="row">
+    //         <div class="input-field col s4">
+    //             <p>{{user.password}}</p>
+    //         </div>
+    //     <div class="row">
+    //         <div class="input-field col s4">
+    //            <p>{{user.cityName}}</p>
+    //         </div>
+    //     </div>
+    //         <button class="delete" type="submit">Редактировать</button>
+    //     </div>
+    //     </form>`)
+    // }
+  
   
   // const dataValue = Object.fromEntries(new FormData(event.target));
   //     

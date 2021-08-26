@@ -13,13 +13,14 @@ const { checkUser } = require('../middleware/checkUser');
 
 router.route('/')
   .get(checkUser, async (req, res) => {
-    const user = await User.findOne({ where: { id: req.session.user.id } });
-    res.render('account', { user });
+    const thisUser = await User.findOne({ where: { id: req.session.user.id } });
+    console.log(thisUser);
+    res.render('account', { thisUser });
   })
   .post(async (req, res) => {
     try {
-      const user = await User.findOne({ where: { id: req.session.user.id } });
-      return res.render('formsInputs', { user });
+      const thisUser = await User.findOne({ where: { id: req.session.user.id } });
+      return res.render('formsInputs', { thisUser });
       // return res.json(user);
     } catch (err) {
       console.log(err);
@@ -29,7 +30,7 @@ router.route('/')
   .patch(async (req, res) => {
     try {
       const { firstName, lastName, email, password, userCity } = req.body;
-      const newInfoUser = await User.update({ firstName, lastName, email, password, userCity},
+      const newInfoUser = await User.update({ firstName, lastName, email, userCity },
         { where: { id: req.session.user.id } });
       return res.json(newInfoUser);
     } catch (err) {
