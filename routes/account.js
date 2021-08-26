@@ -10,18 +10,21 @@ const { checkUser } = require('../middleware/checkUser');
 //   cityName: 'parawa',
 // };
 
+router.route('/editpage')
+  .get((req, res)=> {
+    res.render('account');
+  });
 
 router.route('/')
   .get(checkUser, async (req, res) => {
     const thisUser = await User.findOne({ where: { id: req.session.user.id } });
-    console.log(thisUser);
-    res.render('account', { thisUser });
+    res.render('inputlessAccount', { thisUser });
   })
   .post(async (req, res) => {
     try {
       const thisUser = await User.findOne({ where: { id: req.session.user.id } });
-      return res.render('formsInputs', { thisUser });
-      // return res.json(user);
+      // return res.redirect('/account');
+      return res.json(thisUser);
     } catch (err) {
       console.log(err);
       return res.sendStatus(500).end();
@@ -29,9 +32,12 @@ router.route('/')
   })
   .patch(async (req, res) => {
     try {
-      const { firstName, lastName, email, password, userCity } = req.body;
-      const newInfoUser = await User.update({ firstName, lastName, email, userCity },
+      const { firstName, lastName, email, userCity } = req.body;
+      console.log("loh");
+      await User.update({ firstName, lastName, email, userCity },
         { where: { id: req.session.user.id } });
+        const newInfoUser = await User.findOne({ where: { id: req.session.user.id } });
+        console.log(newInfoUser);
       return res.json(newInfoUser);
     } catch (err) {
       console.log(err);
