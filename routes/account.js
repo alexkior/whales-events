@@ -18,7 +18,8 @@ router.route('/')
   .post(async (req, res) => {
     try {
       const user = await User.findOne({ where: { id: req.session.user.id } });
-      return res.json(user);
+      return res.render('formsInputs', { user });
+      // return res.json(user);
     } catch (err) {
       console.log(err);
       return res.sendStatus(500).end();
