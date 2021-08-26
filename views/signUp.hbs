@@ -1,0 +1,65 @@
+<header class="nav-bar">
+  <section class="block-wrapper_nav-bar">
+    <a class="nav-bar__part-left" href="/">
+      <img src="./img/whales-events_long.png" alt="" class="nav-bar__logo">
+    </a>
+
+    <div class="nav-bar__part-right">
+      <a class="nav-bar__button" href="/">
+        Главная
+      </a>
+
+      {{#if user}}
+      <a class="nav-bar__button" href="/account">
+        Аккаунт
+      </a>
+
+      <button class="nav-bar__button" href="/logout" type="button">
+        Выход
+      </button>
+
+      {{else}}
+
+      <a class="nav-bar__button" href="/signIn">
+        Вход
+      </a>
+
+      <a class="nav-bar__button nav-bar__button_active" href="/signUp">
+        Регистрация
+      </a>
+
+      {{/if}}
+    </div>
+  </section>
+</header>
+
+
+<main class="main">
+  <section class="block-wrapper">
+  <form action="" class="input-bar_signup">
+    <div class="input-bar__input_text input-bar_create_email">
+      <input placeholder="E-mail" id="input_text" type="email" data-length="10">
+    </div>
+
+    <div class="input-bar__input_text input-bar_create_password">
+      <input placeholder="Пароль" id="input_text" type="password" data-length="10">
+    </div>
+
+    <div class="input-bar__input_text input-bar_create_firstName">
+      <input placeholder="Имя" id="input_text" type="text" data-length="10">
+    </div>
+
+    <div class="input-bar__input_text input-bar_create_lastName">
+      <input placeholder="Фамилия" id="input_text" type="text" data-length="10">
+    </div>
+
+    <div class="input-bar__input_text input-bar_create_city">
+      <input placeholder="Город" id="input_text" type="text" data-length="10">
+    </div>
+
+    <button class="input-bar__button input-bar_create_register">
+      Зарегистрироваться
+    </button>
+  </form>
+</section>
+</main>

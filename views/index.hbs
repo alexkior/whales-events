@@ -1,0 +1,158 @@
+<script defer src="./js/index-init.js"></script>
+
+<header class="nav-bar">
+  <section class="block-wrapper_nav-bar">
+    <a class="nav-bar__part-left" href="/">
+      <img src="./img/whales-events_long.png" alt="" class="nav-bar__logo">
+    </a>
+
+    <div class="nav-bar__part-right">
+      <a class="nav-bar__button nav-bar__button_active" href="/">
+        Главная
+      </a>
+
+      {{#if user}}
+      <a class="nav-bar__button" href="/account">
+        Аккаунт
+      </a>
+
+      <button class="nav-bar__button" href="/logout" type="button">
+        Выход
+      </button>
+
+      {{else}}
+
+      <a class="nav-bar__button" href="/signIn">
+        Вход
+      </a>
+
+      <a class="nav-bar__button" href="/signUp">
+        Регистрация
+      </a>
+
+      {{/if}}
+    </div>
+  </section>
+</header>
+
+
+<main class="main">
+  <section class="block-wrapper_search">
+    <div class="input-bar_search">
+      <form action="/startCreation">
+        {{#if user}}
+        <button class="input-bar__button input-bar_search_search" type="submit">
+          Создать мероприятие
+        </button>
+        {{else}}
+        <a class="input-bar__button input-bar_search_search" href="/signUp">
+          Создать мероприятие
+        </a>
+        {{/if}}
+      </form>
+      <div class="input-bar__input_select-m input-bar_search_search-place">
+        <select class="browser-default">
+          <option value="" disabled selected>Место проведения</option>
+          <option value="1">Москва</option>
+          <option value="2">Санкт-Петербург</option>
+          <option value="3">Улан-Удэ</option>
+        </select>
+      </div>
+
+      <div class="input-bar__input_select-m input-bar_search_search-tags">
+        <select class="browser-default">
+          <option value="" disabled selected>Тематика</option>
+          <option value="1">Java-Script</option>
+          <option value="2">Phyton</option>
+          <option value="3">L</option>
+        </select>
+      </div>
+
+      <button class="input-bar__button input-bar__button_search input-bar_search_search-start">
+        Поиск
+      </button>
+    </div>
+  </section>
+  <section class="block-wrapper">
+
+    {{!--     
+    <form action="/create">
+
+      <div class="input-bar_create">
+        <div class="input-bar__input_select input-bar_create_date">
+          <select class="browser-default">
+            <option value="" disabled selected>Дата проведения</option>
+            <option value="1">Java-Script</option>
+            <option value="2">Phyton</option>
+            <option value="3">L</option>
+          </select>
+        </div>
+
+        <div class="input-bar__input_select input-bar_create_tag">
+          <select class="browser-default">
+            <option value="" disabled selected>Тематика</option>
+            <option value="1">Java-Script</option>
+            <option value="2">Phyton</option>
+            <option value="3">L</option>
+          </select>
+        </div>
+
+        <div class="input-bar__input_select input-bar_create_place">
+          <select class="browser-default">
+            <option value="" disabled selected>Место проведения</option>
+            <option value="1">Москва</option>
+            <option value="2">Санкт-Петербург</option>
+            <option value="3">Улан-Удэ</option>
+          </select>
+        </div>
+
+        <div class="input-bar__input_text input-bar_create_name">
+          <input placeholder="Название" id="input_text" type="text" data-length="10">
+        </div>
+
+        <div class="input-bar__input_file input-bar_create_photo">
+          <form action="#">
+            <div class="input-bar__input_file-btn file-field">
+              <div class="btn #29b6f6 light-blue lighten-1">
+                <span>ФАЙЛ</span>
+                <input type="file">
+              </div>
+              <div class="file-path-wrapper">
+                <input placeholder="Добавить фото" class="file-path validate" type="text">
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <button class="input-bar__button input-bar_create_save" type="submit">
+          Сохранить
+        </button>
+      </div>
+    </form> --}}
+
+    {{!-- {{#each}} --}}
+    <div class="event">
+      <img src="./img/bootcamp.jpeg" alt="" class="event__pic">
+
+      <p class="event__tags">Java-Script / Бесплатное</p>
+
+      <h3 class="event__title">Бесплатный мастер-класс по Java-Script</h3>
+
+      <span class="event__stats event__stats-date">
+        <img src="./img/svg/time.svg" alt="" class="event__icon">
+        <p class="event__text">25 октября 2021</p>
+      </span>
+
+      <span class="event__stats event__stats-loc">
+        <img src="./img/svg/map.svg" alt="" class="event__icon">
+        <p class="event__text">Москва</p>
+
+        {{!-- Вот это второй вариант, мол онлайн
+        <img src="./img/svg/wifi.svg" alt="" class="event__icon">
+        <p class="event__text">Онлайн-трансляция</p> 
+        --}}
+      </span>
+    </div>
+    {{!-- {{/each}} --}}
+  </section>
+</main>
