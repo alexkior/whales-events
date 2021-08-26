@@ -10,10 +10,12 @@ const signInRouter = require("./routes/signIn");
 const accountRouter = require("./routes/account");
 
 //session
-// const redis = require("redis");
-// const session = require("express-session");
-// let RedisStore = require("connect-redis")(session);
-// let redisClient = redis.createClient();
+
+const redis = require('redis');
+const session = require('express-session');
+let RedisStore = require('connect-redis')(session);
+let redisClient = redis.createClient();
+
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -45,6 +47,7 @@ app.set("view engine", "hbs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
+
 
 app.use("/account", accountRouter);
 app.use("/", indexRouter);
