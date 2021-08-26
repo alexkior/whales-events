@@ -10,6 +10,7 @@ const { checkUser } = require('../middleware/checkUser');
 //   cityName: 'parawa',
 // };
 
+
 router.route('/')
   .get(checkUser, async (req, res) => {
     const user = await User.findOne({ where: { id: req.session.user.id } });
