@@ -31,6 +31,12 @@ hbs.registerHelper("userCheck", (user, userPostId) => {
     }
 });
 
+
+
+
+
+
+
 //session middleware
 app.use(
     session({
