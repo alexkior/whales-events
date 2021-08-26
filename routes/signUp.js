@@ -1,3 +1,4 @@
+
 const router = require('express').Router();
 const { User } = require('../db/models');
 const bcrypt = require('bcrypt');
@@ -21,7 +22,6 @@ router.route('/')
       return res.redirect('/user/signUp/?err')
     }
   })
-
 
 
 module.exports = router;
