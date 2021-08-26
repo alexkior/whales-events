@@ -14,7 +14,8 @@ $accountDivForm.addEventListener('click', async (event) => {
                 console.log(dataFromBack);
                 $accountDivForm.remove();
                 $accountDiv.innerHTML = dataFromBack
-
+      }
+    }
         // const dataFromBack = await response.json();
         // console.log(dataFromBack);
         // $accountDivForm.remove();
@@ -57,8 +58,8 @@ $accountDivForm.addEventListener('click', async (event) => {
       // }
       
 
-    }
-  }
+    
+  
   if (event.target.tagName === 'BUTTON' && event.target.innerText === 'Применить') {
     const dataValue = Object.fromEntries(new FormData(event.target));
     const response = await fetch('/account', {

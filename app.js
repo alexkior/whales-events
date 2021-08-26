@@ -22,27 +22,35 @@ const app = express();
 
 app.set("view engine", "hbs");
 
-// hbs.registerPartials(__dirname + "/views/partials");
+hbs.registerPartials(__dirname + "/views/partials");
 
 //helpers
 
-// hbs.registerHelper("userCheck", (user, userPostId) => {
-//   console.log(user, userPostId);
-//   if (user.id == userPostId) {
-//     return true;
-//   }
-// });
+hbs.registerHelper("userCheck", (user, userPostId) => {
+  console.log(user, userPostId);
+  if (user.id == userPostId) {
+    return true;
+  }
+});
 
-//session middleware
-// app.use(
-//   session({
-//     name: "sId",
-//     store: new RedisStore({ client: redisClient }),
-//     saveUninitialized: false,
-//     secret: process.env.SESSIONSECRET,
-//     resave: false,
-//   })
-// );
+// session middleware
+app.use(
+  session({
+    name: "sId",
+    store: new RedisStore({ client: redisClient }),
+    saveUninitialized: false,
+    secret: process.env.SESSIONSECRET,
+    resave: false,
+  })
+);
+
+app.use((req, res, next) => {
+  res.locals.user = req?.session?.user;
+  next();
+})
+
+
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));

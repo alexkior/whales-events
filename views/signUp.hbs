@@ -34,27 +34,30 @@
 </header>
 
 
+{{#if err}}<p style="color: red;">Введите данные полностью</p>{{/if}} 
+
+
 <main class="main">
   <section class="block-wrapper">
-  <form action="" class="input-bar_signup">
+  <form action="/signUp" method="POST" class="input-bar_signup">
     <div class="input-bar__input_text input-bar_create_email">
-      <input placeholder="E-mail" id="input_text" type="email" data-length="10">
+      <input name="email" placeholder="E-mail" id="input_text" type="email" data-length="10">
     </div>
 
     <div class="input-bar__input_text input-bar_create_password">
-      <input placeholder="Пароль" id="input_text" type="password" data-length="10">
+      <input name="password" placeholder="Пароль" id="input_text" type="password" data-length="10">
     </div>
 
     <div class="input-bar__input_text input-bar_create_firstName">
-      <input placeholder="Имя" id="input_text" type="text" data-length="10">
+      <input name="firstName" placeholder="Имя" id="input_text" type="text" data-length="10">
     </div>
 
     <div class="input-bar__input_text input-bar_create_lastName">
-      <input placeholder="Фамилия" id="input_text" type="text" data-length="10">
+      <input name="lastName" placeholder="Фамилия" id="input_text" type="text" data-length="10">
     </div>
 
     <div class="input-bar__input_text input-bar_create_city">
-      <input placeholder="Город" id="input_text" type="text" data-length="10">
+      <input name="userCity" placeholder="Город" id="input_text" type="text" data-length="10">
     </div>
 
     <button class="input-bar__button input-bar_create_register">

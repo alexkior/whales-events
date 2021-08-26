@@ -1,25 +1,23 @@
 
 const router = require('express').Router();
-const { User } = require('../db/models');
 const bcrypt = require('bcrypt');
+const { User } = require('../db/models');
 
 
 
 router.route('/')
   .get(async (req, res) => {
-    console.log(req.body)
-    res.render('signUp')
+    res.render('signUp', { err: req.query.err });
   })
   .post(async (req, res) => {
-    const { firstName, lastName, email, password, cityName } = req.body;
-    console.log(req.body);
-    if (firstName && lastName && email && password && cityName) {
+    const { firstName, lastName, email, password, userCity } = req.body;
+    if (firstName && lastName && email && password && userCity) {
       const hashPass = await bcrypt.hash(password, +process.env.SALTROUND);
-      const newUser = await User.create({ firstName, lastName, email, password: hashPass, cityName }, { returning: true, plain: true });
+      const newUser = await User.create({ firstName, lastName, email, password: hashPass, userCity }, { returning: true, plain: true });
       req.session.user = { name: newUser.name, id: newUser.id };
-      return res.redirect('/')
+      return res.redirect('/');
     } else {
-      return res.redirect('/user/signUp/?err')
+      return res.redirect('/signUp/?err=error')
     }
   })
 
