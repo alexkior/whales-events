@@ -13,7 +13,7 @@ const accountRouter = require('./routes/account');
 const redis = require('redis');
 const session = require('express-session');
 let RedisStore = require('connect-redis')(session);
-let redisClient = redis.createClient();account
+let redisClient = redis.createClient();
 
 const PORT = process.env.PORT || 3000;
 const app = express();
