@@ -4,13 +4,14 @@ const bcrypt = require('bcrypt');
 
 
 
-router.route('/signUp')
+router.route('/')
   .get(async (req, res) => {
     console.log(req.body)
     res.render('signUp')
   })
   .post(async (req, res) => {
     const { firstName, lastName, email, password, cityName } = req.body;
+    console.log(req.body);
     if (firstName && lastName && email && password && cityName) {
       const hashPass = await bcrypt.hash(password, +process.env.SALTROUND);
       const newUser = await User.create({ firstName, lastName, email, password: hashPass, cityName }, { returning: true, plain: true });

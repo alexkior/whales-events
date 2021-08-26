@@ -1,29 +1,106 @@
-const $accountForm = document.body.querySelector('#account_id');
+const $accountDiv = document.body.querySelector('#divForm');
+const $accountDivForm = document.body.querySelector('#account_id');
+const $accountInput = document.body.querySelector('#account_id_input');
 
-$accountForm.addEventListener('click', async (event) => {
-
-  if (event.target.tagName === 'BUTTON') {
+$accountDivForm.addEventListener('click', async (event) => {
+  if (event.target.tagName === 'BUTTON' && event.target.innerText === 'Редактировать') {
     event.preventDefault();
     const response = await fetch(`/account`, {
-      method: "DELETE",
+      method: "POST",
     });
     console.log(response);
       if (response.ok) {
         const dataFromBack = await response.json();
         console.log(dataFromBack);
-        $accountForm.remove();
+        $accountDivForm.remove();
+        $accountDiv.insertAdjacentHTML('afterbegin', createDomElement(dataFromBack));
 
+        function createDomElement(dataFromBack){
+              return(` <form id="account_id_input" action="/account" method="PATCH">
+                  <div class="row">
+                      <div class="input-field col s4">
+                          <input id="name" type="text" value="{{user.firstName}}" class="validate" name="firstName">
+                          <label for="firstName">firstName</label>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="input-field col s4">
+                          <input id="email" type="text" value="{{user.lastName}}" class="validate" name="lastName">
+                          <label for="lastName">lastName</label>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="input-field col s4">
+                          <input id="email" type="text" value="{{user.email}}" class="validate" name="email">
+                          <label for="email">Email</label>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="input-field col s4">
+                          <input id="password" type="password" value="{{user.password}}" class="validate" name='password'>
+                          <label for="password">Password</label>
+                      </div>
+                  <div class="row">
+                      <div class="input-field col s4">
+                          <input id="email" type="text" value="{{user.cityName}}" class="validate" name="cityName">
+                          <label for="cityName">cityName</label>
+                      </div>
+                  </div>
+                      <button type="submit">Применить</button>
+                  </div>
+                  </form>`)
       }
+      
+
     }
-
+  }
+  if (event.target.tagName === 'BUTTON' && event.target.innerText === 'Применить') {
     const dataValue = Object.fromEntries(new FormData(event.target));
+    const response = await fetch('/account', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      body: JSON.stringify(dataValue),
+    });
+    if (response.ok) {
+      const newInfo = await response.json();
+      $accountInput.remove();
+      $accountDiv.insertAdjacentHTML('afterbegin', createDomElement(newInfo));
 
-  //   if(response.ok){
-  //     const dataFromBack = await response.json();
-  //     $postWrapper.insertAdjacentHTML('afterbegin', createDomElement(dataFromBack))
-
-  //     function createDomElement(dataFromBack){
-  //         return(`
+      function createDomElement(dataFromBack){
+        return(`<form id="account_id" action="/account" method="POST">
+        <div class="row">
+            <div class="input-field col s4">
+                <p>{{user.firstName}}</p>
+            </div>
+        </div>
+        <p></p>
+        <div class="row">
+            <div class="input-field col s4">
+                <p>{{user.lastName}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s4">
+                <p>{{user.email}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s4">
+                <p>{{user.password}}</p>
+            </div>
+        <div class="row">
+            <div class="input-field col s4">
+               <p>{{user.cityName}}</p>
+            </div>
+        </div>
+            <button class="delete" type="submit">Редактировать</button>
+        </div>
+        </form>`)
+    }
+  }
+  
+  // const dataValue = Object.fromEntries(new FormData(event.target));
+  //     
   //         <div data-id="${dataFromBack.id}" class="col s3">
   //   <div class="card blue-grey darken-1">
   //     <div class="card-content white-text">
@@ -47,43 +124,7 @@ $accountForm.addEventListener('click', async (event) => {
   // });
 });
 
-{ /* <div class="row">
-    <div class="s4 offset-s4">
-        <form id="account_id" action="/account" method="POST">
-        <div class="row">
-            <div class="input-field col s4">
-                <input id="name" type="text" class="validate" name="firstName">
-                <label for="firstName">firstName</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s4">
-                <input id="email" type="text" class="validate" name="lastName">
-                <label for="lastName">lastName</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s4">
-                <input id="email" type="text" class="validate" name="email">
-                <label for="email">Email</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s4">
-                <input id="password" type="password" class="validate" name='password'>
-                <label for="password">Password</label>
-            </div>
-        <div class="row">
-            <div class="input-field col s4">
-                <input id="email" type="text" class="validate" name="cityName">
-                <label for="cityName">cityName</label>
-            </div>
-        </div>
-            <button type="submit">Submit</button>
-        </div>
-        </form>
-    </div>
-</div> */ }
+{ /* */ }
 
 
 

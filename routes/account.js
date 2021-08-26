@@ -1,4 +1,7 @@
 const router = require('express').Router();
+const {checkUser} = require('../middleware/checkUser');
+
+
 const infa = {
   firstName: 'vasya',
   lastName: 'petya',
@@ -8,27 +11,31 @@ const infa = {
 };
 
 router.route('/')
-  .get(async (req, res) => {
-    if (!res.session.user) {
-      res.redirect('/index');
-    }
-    res.render('account', { infa });
+  .get(checkUser, async (req, res) => {
+      const user = await User.findOne({ where: { id: req.session.user.id } });
+      res.render('account', { infa, id: req.session.user.id, user });
   })
   .post(async (req, res) => {
-   
+    try {
+      const user = await User.findOne({ where: { id: req.session.user.id } });
+      return res.json(user);
+    } catch (err) {
+      console.log(err);
+      return res.sendStatus(500).end();
+    }
   })
-  .delete(async (req, res) => {
-    try{
-      const thisUser = await User.findOne({ where: { id: res.session.user.id } });
-      return res.json(thisUser);
-  }catch(err){
-      console.log(err)
-      return res.sendStatus(500).end()
-  }
+  .patch(async (req, res) => {
+    try {
+      const { firstName, lastName, email, password, cityName } = req.body;
+      const newInfoUser = await User.update({ firstName, lastName, email, password, cityName },
+        { where: { id: req.session.user.id } });
+      return res.json(newInfoUser);
+    } catch (err) {
+      console.log(err);
+      return res.sendStatus(500).end();
+    }
   })
   .put((req, res) => {
-    const userId = req.session.user.id;
-    res.json(userId);
   })
 
 module.exports = router;

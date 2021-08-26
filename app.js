@@ -48,7 +48,7 @@ app.use(express.json());
 
 app.use('/account', accountRouter);
 app.use('/index', indexRouter);
-app.use('/signUp', signInRouter);
+app.use('/signUp', signUpRouter);
 app.use('/signIn', signInRouter);
 
 app.listen(PORT, () => {
