@@ -1,109 +1,104 @@
-const $accountDiv = document.body.querySelector('#divForm');
-const $accountDivForm = document.body.querySelector('#account_id');
-const $accountInput = document.body.querySelector('#account_id_input');
+const $accountDiv = document.body.querySelector('#inputless');
+const $accountDivForm = document.body.querySelector('#inputlessForm');
+const $accountInput = document.body.querySelector('#inputForm');
 
 $accountDivForm.addEventListener('click', async (event) => {
   if (event.target.tagName === 'BUTTON' && event.target.innerText === 'Редактировать') {
     event.preventDefault();
     const response = await fetch(`/account`, {
-      method: "POST",
+      method: "POST"
     });
     console.log(response);
-      if (response.ok) {
-                const dataFromBack = await response.text();
-                console.log(dataFromBack);
-                $accountDivForm.remove();
-                $accountDiv.innerHTML = dataFromBack
-      }
+    if (response.ok) {
+      const dataFromBack = await response.text();
+      console.log(dataFromBack);
+      $accountDivForm.remove();
+      $accountDiv.innerHTML = dataFromBack;
     }
-        // const dataFromBack = await response.json();
-        // console.log(dataFromBack);
-        // $accountDivForm.remove();
-        // $accountDiv.insertAdjacentHTML('afterbegin', createDomElement(dataFromBack));
-
-      //   function createDomElement(dataFromBack){
-      //         return(` <form id="account_id_input" action="/account" method="PATCH">
-      //             <div class="row">
-      //                 <div class="input-field col s4">
-      //                     <input id="name" type="text" value="{{user.firstName}}" class="validate" name="firstName">
-      //                     <label for="firstName">firstName</label>
-      //                 </div>
-      //             </div>
-      //             <div class="row">
-      //                 <div class="input-field col s4">
-      //                     <input id="email" type="text" value="{{user.lastName}}" class="validate" name="lastName">
-      //                     <label for="lastName">lastName</label>
-      //                 </div>
-      //             </div>
-      //             <div class="row">
-      //                 <div class="input-field col s4">
-      //                     <input id="email" type="text" value="{{user.email}}" class="validate" name="email">
-      //                     <label for="email">Email</label>
-      //                 </div>
-      //             </div>
-      //             <div class="row">
-      //                 <div class="input-field col s4">
-      //                     <input id="password" type="password" value="{{user.password}}" class="validate" name='password'>
-      //                     <label for="password">Password</label>
-      //                 </div>
-      //             <div class="row">
-      //                 <div class="input-field col s4">
-      //                     <input id="email" type="text" value="{{user.cityName}}" class="validate" name="cityName">
-      //                     <label for="cityName">cityName</label>
-      //                 </div>
-      //             </div>
-      //                 <button type="submit">Применить</button>
-      //             </div>
-      //             </form>`)
-      // }
-      
-
-    
-  
+  }
   if (event.target.tagName === 'BUTTON' && event.target.innerText === 'Применить') {
     const dataValue = Object.fromEntries(new FormData(event.target));
     const response = await fetch('/account', {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
-      body: JSON.stringify(dataValue),
+      body: JSON.stringify(dataValue)
     });
     if (response.ok) {
       const newInfo = await response.json();
       $accountInput.remove();
       $accountDiv.insertAdjacentHTML('afterbegin', createDomElement(newInfo));
 
-      function createDomElement(dataFromBack){
-        return(`<form id="account_id" action="/account" method="POST">
-        <div class="row">
-            <div class="input-field col s4">
-                <p>{{user.firstName}}</p>
-            </div>
+      function createDomElement(info) {
+        return (`
+        <form action="" class="input-bar_signup" id="inputForm">
+        <div class="input-bar__input_text input-bar_create_email">
+          <input name="email" placeholder="E-mail" id="input_text" type="email" data-length="10">
         </div>
-        <p></p>
-        <div class="row">
-            <div class="input-field col s4">
-                <p>{{user.lastName}}</p>
-            </div>
+    
+        <div class="input-bar__input_text input-bar_create_firstName">
+          <input name="firstName" placeholder="Имя" id="input_text" type="text" data-length="10">
         </div>
-        <div class="row">
-            <div class="input-field col s4">
-                <p>{{user.email}}</p>
-            </div>
+    
+        <div class="input-bar__input_text input-bar_create_lastName">
+          <input name="lastName" placeholder="Фамилия" id="input_text" type="text" data-length="10">
         </div>
-        <div class="row">
-            <div class="input-field col s4">
-                <p>{{user.password}}</p>
-            </div>
-        <div class="row">
-            <div class="input-field col s4">
-               <p>{{user.cityName}}</p>
-            </div>
+    
+        <div class="input-bar__input_text input-bar_create_city">
+          <input name="userCity" placeholder="Город" id="input_text" type="text" data-length="10">
         </div>
-            <button class="delete" type="submit">Редактировать</button>
-        </div>
-        </form>`)
+    
+        <button class="input-bar__button input-bar_create_register">
+          Применить
+        </button>
+      </form>
+        `)
+      }
     }
   }
+});
+  // const dataFromBack = await response.json();
+  // console.log(dataFromBack);
+  // $accountDivForm.remove();
+  // $accountDiv.insertAdjacentHTML('afterbegin', createDomElement(dataFromBack));
+
+  //   function createDomElement(dataFromBack){
+  //         return(` <form id="account_id_input" action="/account" method="PATCH">
+  //             <div class="row">
+  //                 <div class="input-field col s4">
+  //                     <input id="name" type="text" value="{{user.firstName}}" class="validate" name="firstName">
+  //                     <label for="firstName">firstName</label>
+  //                 </div>
+  //             </div>
+  //             <div class="row">
+  //                 <div class="input-field col s4">
+  //                     <input id="email" type="text" value="{{user.lastName}}" class="validate" name="lastName">
+  //                     <label for="lastName">lastName</label>
+  //                 </div>
+  //             </div>
+  //             <div class="row">
+  //                 <div class="input-field col s4">
+  //                     <input id="email" type="text" value="{{user.email}}" class="validate" name="email">
+  //                     <label for="email">Email</label>
+  //                 </div>
+  //             </div>
+  //             <div class="row">
+  //                 <div class="input-field col s4">
+  //                     <input id="password" type="password" value="{{user.password}}" class="validate" name='password'>
+  //                     <label for="password">Password</label>
+  //                 </div>
+  //             <div class="row">
+  //                 <div class="input-field col s4">
+  //                     <input id="email" type="text" value="{{user.cityName}}" class="validate" name="cityName">
+  //                     <label for="cityName">cityName</label>
+  //                 </div>
+  //             </div>
+  //                 <button type="submit">Применить</button>
+  //             </div>
+  //             </form>`)
+  // }
+      
+
+    
   
   // const dataValue = Object.fromEntries(new FormData(event.target));
   //     
@@ -128,15 +123,15 @@ $accountDivForm.addEventListener('click', async (event) => {
   // if(response.ok){
   //   $postWrap.remove()
   // });
-});
+// };
 
-{ /* */ }
-
-
+ /* */ 
 
 
 
-{/* <script defer src="/js/application.js"></script>
+
+
+/* <script defer src="/js/application.js"></script>
 <div class="row">
     <div class="s4 offset-s4">
         <form id="account_id" action="/account" method="DELETE">
@@ -169,4 +164,4 @@ $accountDivForm.addEventListener('click', async (event) => {
         </div>
         </form>
     </div>
-</div> */}
+</div> */

@@ -12,13 +12,13 @@ const { checkUser } = require('../middleware/checkUser');
 
 router.route('/')
   .get(checkUser, async (req, res) => {
-    const user = await User.findOne({ where: { id: req.session.user.id } });
-    res.render('account', { user });
+    const thisUser = await User.findOne({ where: { id: req.session.user.id } });
+    res.render('inputlessAccount', { thisUser });
   })
   .post(async (req, res) => {
     try {
-      const user = await User.findOne({ where: { id: req.session.user.id } });
-      return res.render('formsInputs', { user });
+      const thisUser = await User.findOne({ where: { id: req.session.user.id } });
+      return res.json(thisUser);
       // return res.json(user);
     } catch (err) {
       console.log(err);

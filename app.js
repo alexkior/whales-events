@@ -49,9 +49,6 @@ app.use((req, res, next) => {
   next();
 })
 
-
-
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
