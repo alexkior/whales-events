@@ -298,6 +298,31 @@
   animation-duration: 0.4s;
 }
 
+.input-bar__button_dead {
+  width: 200px;
+  height: 44px;
+
+  border: none;
+  background-color: #92d1ec;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
 .input-bar__inputlessText {
   width: 200px;
   height: 44px;
