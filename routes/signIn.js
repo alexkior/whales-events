@@ -23,7 +23,11 @@ router.route('/')
 
 
 
-
+    router.route('/logout')
+    .post(async (req, res) => {
+      req.session.destroy();
+      res.clearCookie('sId').redirect('/');
+    });
 
 
 module.exports = router;

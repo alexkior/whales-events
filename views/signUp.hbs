@@ -14,9 +14,9 @@
         Аккаунт
       </a>
 
-      <button class="nav-bar__button" href="/logout" type="button">
+      <a class="nav-bar__button" href="/logout">
         Выход
-      </button>
+      </a>
 
       {{else}}
 
@@ -34,11 +34,9 @@
 </header>
 
 
-{{#if err}}<p style="color: red;">Введите данные полностью</p>{{/if}} 
-
-
 <main class="main">
   <section class="block-wrapper">
+    {{#if err}}<p style="color: red;">Введите данные полностью</p>{{/if}} 
   <form action="/signUp" method="POST" class="input-bar_signup">
     <div class="input-bar__input_text input-bar_create_email">
       <input name="email" placeholder="E-mail" id="input_text" type="email" data-length="10">

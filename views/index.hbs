@@ -16,7 +16,7 @@
         Аккаунт
       </a>
 
-      <button class="nav-bar__button" href="/logout" type="button">
+      <button class="nav-bar__button" href="/logout">
         Выход
       </button>
 
@@ -45,7 +45,7 @@
         Создать мероприятие
       </a>
       {{else}}
-      <a class="input-bar__button input-bar_search_search" href="/signUp">
+      <a class="input-bar__button input-bar_search_search" id="modal-btn">
         Создать мероприятие
       </a>
       {{/if}}
@@ -75,8 +75,8 @@
   </section>
   <section class="block-wrapper">
 
-    <div class="modal">
-      <div class="modal-content">
+
+      <div class="modal">
         <span class="close-btn">&times;</span>
         <form action="/create">
 
@@ -131,9 +131,7 @@
             </button>
           </div>
         </form>
-      </div>
     </div>
-
     {{!--     
     <form action="/create">
 
