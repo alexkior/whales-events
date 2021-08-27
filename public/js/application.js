@@ -94,7 +94,7 @@ $accountDiv.addEventListener('click', async (event) => {
     </form>
         `)
       }
-      // window.location = '/account';
+      window.location = '/account';
     }
   }
 });
