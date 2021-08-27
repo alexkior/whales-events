@@ -3,7 +3,6 @@ const $accountDivForm = document.body.querySelector('#inputlessForm');
 const $accountInput = document.body.querySelector('#inputForm');
 const $knopka = document.body.querySelector('#knopka');
 
-
 $accountDiv.addEventListener('click', async (event) => {
   if (event.target.tagName === 'BUTTON' && event.target.innerText === 'Редактировать') {
     event.preventDefault();
