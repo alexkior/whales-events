@@ -38,18 +38,17 @@
 
 <main class="main">
   <section class="block-wrapper_search">
-    <div class="input-bar_search">
-      <form action="/startCreation">
-        {{#if user}}
-        <button class="input-bar__button input-bar_search_search" type="submit">
-          Создать мероприятие
-        </button>
-        {{else}}
-        <a class="input-bar__button input-bar_search_search" href="/signUp">
-          Создать мероприятие
-        </a>
-        {{/if}}
-      </form>
+
+    <form class="input-bar_search" action="/index/search" id="#search">
+      {{#if user}}
+      <a class="input-bar__button input-bar_search_search" id="modal-btn">
+        Создать мероприятие
+      </a>
+      {{else}}
+      <a class="input-bar__button input-bar_search_search" href="/signUp">
+        Создать мероприятие
+      </a>
+      {{/if}}
       <div class="input-bar__input_select-m input-bar_search_search-place">
         <select class="browser-default">
           <option value="" disabled selected>Место проведения</option>
@@ -68,12 +67,72 @@
         </select>
       </div>
 
-      <button class="input-bar__button input-bar__button_search input-bar_search_search-start">
+      <button class="input-bar__button input-bar__button_search input-bar_search_search-start" type="submit">
         Поиск
       </button>
-    </div>
+    </form>
+
   </section>
   <section class="block-wrapper">
+
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <form action="/create">
+
+          <div class="input-bar_create">
+            <div class="input-bar__input_select input-bar_create_date">
+              <select class="browser-default">
+                <option value="" disabled selected>Дата проведения</option>
+                <option value="1">Java-Script</option>
+                <option value="2">Phyton</option>
+                <option value="3">L</option>
+              </select>
+            </div>
+
+            <div class="input-bar__input_select input-bar_create_tag">
+              <select class="browser-default">
+                <option value="" disabled selected>Тематика</option>
+                <option value="1">Java-Script</option>
+                <option value="2">Phyton</option>
+                <option value="3">L</option>
+              </select>
+            </div>
+
+            <div class="input-bar__input_select input-bar_create_place">
+              <select class="browser-default">
+                <option value="" disabled selected>Место проведения</option>
+                <option value="1">Москва</option>
+                <option value="2">Санкт-Петербург</option>
+                <option value="3">Улан-Удэ</option>
+              </select>
+            </div>
+
+            <div class="input-bar__input_text input-bar_create_name">
+              <input placeholder="Название" id="input_text" type="text" data-length="10">
+            </div>
+
+            <div class="input-bar__input_file input-bar_create_photo">
+              <form action="#">
+                <div class="input-bar__input_file-btn file-field">
+                  <div class="btn #29b6f6 light-blue lighten-1">
+                    <span>ФАЙЛ</span>
+                    <input type="file">
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input placeholder="Добавить фото" class="file-path validate" type="text">
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <button class="input-bar__button input-bar_create_save" type="submit">
+              Сохранить
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     {{!--     
     <form action="/create">

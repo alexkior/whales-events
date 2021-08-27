@@ -3,7 +3,6 @@ const $accountDivForm = document.body.querySelector('#inputlessForm');
 const $accountInput = document.body.querySelector('#inputForm');
 const $knopka = document.body.querySelector('#knopka');
 
-
 $accountDiv.addEventListener('click', async (event) => {
   if (event.target.tagName === 'BUTTON' && event.target.innerText === 'Редактировать') {
     event.preventDefault();
@@ -98,45 +97,3 @@ $accountDiv.addEventListener('click', async (event) => {
     }
   }
 });
-  // const dataFromBack = await response.json();
-  // console.log(dataFromBack);
-  // $accountDivForm.remove();
-  // $accountDiv.insertAdjacentHTML('afterbegin', createDomElement(dataFromBack));
-
-  //   function createDomElement(dataFromBack){
-  //         return(` <form id="account_id_input" action="/account" method="PATCH">
-  //             <div class="row">
-  //                 <div class="input-field col s4">
-  //                     <input id="name" type="text" value="{{user.firstName}}" class="validate" name="firstName">
-  //                     <label for="firstName">firstName</label>
-  //                 </div>
-  //             </div>
-  //             <div class="row">
-  //                 <div class="input-field col s4">
-  //                     <input id="email" type="text" value="{{user.lastName}}" class="validate" name="lastName">
-  //                     <label for="lastName">lastName</label>
-  //                 </div>
-  //             </div>
-  //             <div class="row">
-  //                 <div class="input-field col s4">
-  //                     <input id="email" type="text" value="{{user.email}}" class="validate" name="email">
-  //                     <label for="email">Email</label>
-  //                 </div>
-  //             </div>
-  //             <div class="row">
-  //                 <div class="input-field col s4">
-  //                     <input id="password" type="password" value="{{user.password}}" class="validate" name='password'>
-  //                     <label for="password">Password</label>
-  //                 </div>
-  //             <div class="row">
-  //                 <div class="input-field col s4">
-  //                     <input id="email" type="text" value="{{user.cityName}}" class="validate" name="cityName">
-  //                     <label for="cityName">cityName</label>
-  //                 </div>
-  //             </div>
-  //                 <button type="submit">Применить</button>
-  //             </div>
-  //             </form>`)
-  // }
-      
-
