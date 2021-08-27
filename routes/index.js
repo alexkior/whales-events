@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { User, Event, City, Tag } = require('../db/models');
+const { checkUser } = require('../middleware/checkUser');
 
 /* GET home page. */
 router.route('/')

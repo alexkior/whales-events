@@ -35,13 +35,13 @@
 
 <main class="main">
   <section class="block-wrapper">
-  <form action="" class="input-bar_signin">
+  <form action="/signIn"  method="POST" class="input-bar_signin">
     <div class="input-bar__input_text input-bar_create_email">
-      <input placeholder="E-mail" id="input_text" type="email" data-length="10">
+      <input name="email" placeholder="E-mail" id="input_text" type="email" data-length="10">
     </div>
 
     <div class="input-bar__input_text input-bar_create_password">
-      <input placeholder="Пароль" id="input_text" type="password" data-length="10">
+      <input name="password" placeholder="Пароль" id="input_text" type="password" data-length="10">
     </div>
     <button class="input-bar__button input-bar_create_enter">
       Войти
