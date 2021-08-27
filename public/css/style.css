@@ -115,10 +115,10 @@
 
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto;
+  grid-template-rows: auto auto;
   row-gap: 60px;
 
-  grid-auto-flow: row;
+  grid-auto-flow: dense; 
 
   padding: 60px 0px 60px 0px;
 }
@@ -146,6 +146,17 @@
 .block-wrapper_search {
   width: 1024px;
   height: 110px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.block-wrapper_create {
+  width: 1024px;
+  min-height: 10px;
+  height: auto;
 
   display: flex;
   flex-direction: row;
@@ -488,7 +499,7 @@
 }
 
 .event__stats {
-  width: 200px;
+  width: 500px;
 
   display: flex;
   flex-direction: row;
