@@ -24,12 +24,6 @@ router.route('/')
     res.render('index', { findCity, findTags });
   });
 
-router.route('/logout')
-  .post(async (req, res) => {
-    req.session.destroy();
-    res.clearCookie('sId').redirect('/');
-  });
-
 router.route('/create')
   .post(async (req, res) => {
   const newPost = await Event.create({ eventName: req.body.eventName, date: req.body.date, userId: req.session.user.id, tagId: req.body.tagId, cityId: req.body.cityId });
@@ -63,4 +57,12 @@ router.route('/search')
       res.json({findEvents, findTags, findCities});
     }
   });
+
+
+  router.route('/logout')
+  .get(async (req, res) => {
+    req.session.destroy();
+    res.clearCookie('sId').redirect('/');
+  });
+
 module.exports = router;
