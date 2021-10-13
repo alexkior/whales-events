@@ -1,4 +1,4 @@
-# Whales-events
+# WhalesEvents
 
 Приложение для создания и поиска мероприятий. 
 HBS, Express, Postgresql
